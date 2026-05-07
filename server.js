@@ -10,6 +10,7 @@ const __dirname = import.meta.dirname
 const baseDir = path.join(__dirname, 'public')
 
 const server = http.createServer(async (req, res) => {
+    
     if (req.url.startsWith('/api/getLivePrices') && req.method == 'GET') {
         res.setHeader('Access-Control-Allow-Origin', '*')
         await handleLivePrices(req,res)

@@ -1,5 +1,9 @@
 const priceEl = document.getElementById('price-display')
-
+const investBtn = document.getElementById('invest-btn')
+const investInpt = document.getElementById('investment-amount')
+const dialogEl = document.querySelector('dialog')
+const investSummary = document.getElementById('investment-summary')
+let currentPrice = 0
 async function fetchLivePrice() {
     try {
         const eventSource = new EventSource('/api/getLivePrices')
@@ -9,6 +13,8 @@ async function fetchLivePrice() {
         eventSource.onmessage = (event) => {
             const data = JSON.parse(event.data)
             priceEl.innerText = data.price.toFixed(2)
+            currentPrice = data.price.toFixed(2)
+
         }
     }
     catch (err) {
@@ -16,4 +22,24 @@ async function fetchLivePrice() {
     }
 }
 
+async function handleInvestBtnClick(e) {
+    e.preventDefault()
+
+    dialogEl.style.display = 'block'
+    investSummary.innerText = `You just bought ${(investInpt.value / currentPrice).toFixed(2)} ounces (ozt) for £${investInpt.value}. \n You will receive documentation shortly.`
+
+}
+
+document.addEventListener('click', (event) => {
+    if (event.target.id == 'invest-btn') {
+        handleInvestBtnClick(event)
+    }
+
+    if (event.target.id == 'dialog-close') {
+        dialogEl.style.display = 'none'
+        investInpt.value = 0
+    }
+})
+
 fetchLivePrice()
+
