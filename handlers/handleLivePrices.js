@@ -14,11 +14,11 @@ export async function handleLivePrices(req, res) {
 }
 
 
-export function handleInvest(req, res, baseDir) {
+export async function handleInvest(req, res,__dirname) {
 
     res.statusCode=200
     res.setHeader('Content-Type','application/json')
-    const parsedBody = parseJSONBody(req)
-    investEvent.emit('invest',parsedBody)
+    const parsedBody = await parseJSONBody(req)
+    investEvent.emit('invest',parsedBody,__dirname)
 
 }
