@@ -14,7 +14,6 @@ async function fetchLivePrice() {
             const data = JSON.parse(event.data)
             priceEl.innerText = data.price.toFixed(2)
             currentPrice = data.price.toFixed(2)
-
         }
     }
     catch (err) {
@@ -27,6 +26,17 @@ async function handleInvestBtnClick(e) {
 
     dialogEl.style.display = 'block'
     investSummary.innerText = `You just bought ${(investInpt.value / currentPrice).toFixed(2)} ounces (ozt) for £${investInpt.value}. \n You will receive documentation shortly.`
+    const data = { 'amount': investInpt.value, 'currentPrice': currentPrice }
+    const response = await fetch('/api/getLivePrices',{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
 }
 
