@@ -3,15 +3,19 @@ import path from 'node:path';
 import fs from 'node:fs/promises'
 import { getContentType } from './utils/getContentType.js';
 import { serveStatic } from './utils/serveStatic.js';
+import { handleLivePrices } from './handlers/handleLivePrices.js';
 
 const PORT = 8000
 const __dirname = import.meta.dirname
 const baseDir = path.join(__dirname, 'public')
+
 const server = http.createServer(async (req, res) => {
-
+    if (req.url.startsWith('/api/getLivePrices') && req.method == 'GET') {
+        await handleLivePrices(req,res)
+    } else {
+        serveStatic(req, res, baseDir)
+    }
     console.log('server started at port', PORT)
-    serveStatic(req,res,baseDir)
-
 })
 
 server.listen(PORT)
