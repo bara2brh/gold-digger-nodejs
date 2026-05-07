@@ -1,0 +1,23 @@
+{
+  "name": "golddigger",
+  "version": "1.0.0",
+  "description": "gold digger prototype app",
+  "main": "server.js",
+  "type":"module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bara2brh/gold-digger-nodejs.git"
+  },
+  "author": "bara hashlamoon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bara2brh/gold-digger-nodejs/issues"
+  },
+  "homepage": "https://github.com/bara2brh/gold-digger-nodejs#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
