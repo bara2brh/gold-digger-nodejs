@@ -8,7 +8,7 @@ export async function handleLivePrices(req, res) {
     res.setHeader('Connection', 'keep-alive')
     setInterval(() => {
         const livePrice = getLivePrices()
-        res.write(`data: ${JSON.stringify({ event: 'live-price', price: livePrice })}/n/n`)
+        res.write(`data: ${JSON.stringify({ event: 'live-price', price: livePrice })}\n\n`)
     }, 2000)
 
 }
