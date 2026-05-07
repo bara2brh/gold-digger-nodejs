@@ -1,7 +1,7 @@
 # gold investing app prototype
 
-• shows live gold prices using SSE
-• logs user's purchase with date,time,price and the purchase amount 
+• shows live gold prices using SSE\n
+• logs user's purchase with date,time,price and the purchase amount \n
 • clean and orginized code
 
 <img width="511" height="678" alt="image" src="https://github.com/user-attachments/assets/5ac342df-fb36-4767-ab19-3afc76a1aa2e" />
